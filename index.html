@@ -12,11 +12,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             background-color: #f4f4f4;
         }
         .container {
             text-align: center;
+            width: 100%;
+        }
+        .image-container {
+            width: 50%; /* Demi-page */
+            margin: 20px auto;
+        }
+        .image-container img {
+            width: 100%; /* Adapte l'image à la largeur de la demi-page */
+            border-radius: 10px; /* Ajout d'un effet d'arrondi */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
         }
         .button {
             margin-top: 20px;
@@ -35,8 +46,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Crème de SORGHO (Drôo2)</h1>
-        <p>SORGHUM cream (Drôo)</p>
+        <h1>Bienvenue sur notre page dynamique</h1>
+        <p>Cliquez sur le bouton pour découvrir plus de contenu.</p>
+        <div class="image-container">
+            <img src="images/creme-de-shorgo.jpg" alt="Crème de Shorgo">
+        </div>
         <button class="button" onclick="loadDynamicContent()">Voir Plus</button>
         <div id="dynamic-content"></div>
     </div>
