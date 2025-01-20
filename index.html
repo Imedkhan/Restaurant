@@ -19,12 +19,17 @@
         }
         header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column; /* Arrange les éléments en colonne */
+            justify-content: center;
+            align-items: center; /* Centre les éléments horizontalement */
             background-color: #bdc9cc;
             color: Black;
             border-radius: 8px;
             padding: 10px;
+            text-align: center; /* Centre le texte */
+        }
+        header .flags {
+            margin-top: 10px; /* Ajoute un espace entre le titre et les drapeaux */
         }
         header h1 {
             margin: 0;
@@ -38,7 +43,7 @@
         }
         .dish-image {
             display: block;  /* Ensures the image is treated as a block element */
-            width: 40%;
+            width: 60%;
             max-width: 700px;
             margin: 0 auto;  /* This centers the image horizontally */
             border-radius: 20px;
@@ -146,13 +151,13 @@
             };
 
             const serving = {
-                'fr': 'La Mloukhia se sert généralement avec du pain frais et parfois avec des olives ou du riz.',
-                'en': 'Mloukhia is usually served with fresh bread and sometimes with olives or rice.',
-                'es': 'La Mloukhia generalmente se sirve con pan fresco y, a veces, con aceitunas o arroz.',
-                'de': 'Mloukhia wird normalerweise mit frischem Brot und manchmal mit Oliven oder Reis serviert.',
-                'it': 'Mloukhia viene solitamente servita con pane fresco e talvolta con olive o riso.',
-                'pl': 'Mloukhia zazwyczaj podaje się z świeżym chlebem, czasami z oliwkami lub ryżem.',
-                'ar': 'تُقدم الملوخية عادة مع الخبز الطازج وأحيانًا مع الزيتون أو الأرز.'
+                'fr': 'La Mloukhia se sert généralement avec du pain frais et parfois avec des olives.',
+                'en': 'Mloukhia is usually served with fresh bread and sometimes with olives.',
+                'es': 'La Mloukhia generalmente se sirve con pan fresco y, a veces, con aceitunas.',
+                'de': 'Mloukhia wird normalerweise mit frischem Brot und manchmal mit Oliven.',
+                'it': 'Mloukhia viene solitamente servita con pane fresco e talvolta con olive.',
+                'pl': 'Mloukhia zazwyczaj podaje się z świeżym chlebem, czasami z oliwkami.',
+                'ar': 'تُقدم الملوخية عادة مع الخبز الطازج وأحيانًا مع الزيتون .'
             };
             // Switch content based on the selected language
             document.querySelector('.container h1').textContent = texts[language];
@@ -160,11 +165,16 @@
             document.querySelector('.calories h2').textContent = language === 'en' ? 'Calories' : (language === 'es' ? 'Calorías' : (language === 'de' ? 'Kalorien' : (language === 'it' ? 'Calorie' : (language === 'pl' ? 'Kalorie' : (language === 'ar' ? 'السعرات الحرارية' : 'Calories')))));
             document.querySelector('.components h2').textContent = language === 'en' ? 'Ingredients' : (language === 'es' ? 'Ingredientes' : (language === 'de' ? 'Zutaten' : (language === 'it' ? 'Ingredienti' : (language === 'pl' ? 'Składniki' : (language === 'ar' ? 'المكونات' : 'Ingrédients')))));
             document.querySelector('.allergies h2').textContent = language === 'en' ? 'Allergens' : (language === 'es' ? 'Alergénicos' : (language === 'de' ? 'Allergene' : (language === 'it' ? 'Allergeni' : (language === 'pl' ? 'Alergeny' : (language === 'ar' ? 'المواد المثيرة للحساسية' : 'Allergènes')))));
+            document.querySelector('.history h2').textContent = language === 'en' ? 'History' : (language === 'es' ? 'Historia' : (language === 'de' ? 'Geschichte' : (language === 'it' ? 'Storia' : (language === 'pl' ? 'Historia' : (language === 'ar' ? 'التاريخ' : 'Historique')))));
+            document.querySelector('.serving h2').textContent = language === 'en' ? 'Serving' : (language === 'es' ? 'Servicio' : (language === 'de' ? 'Servieren' : (language === 'it' ? 'Servire' : (language === 'pl' ? 'Serwowanie' : (language === 'ar' ? 'طريقة التقديم' : 'Service')))));
+
 
             document.querySelector('.overview p').textContent = overviews[language];
             document.querySelector('.calories p').textContent = calories[language];
             document.querySelector('.components p').textContent = components[language];
             document.querySelector('.allergies p').textContent = allergies[language];
+            document.querySelector('.history p').textContent = history[language];
+            document.querySelector('.serving p').textContent = serving[language];
         }
     </script>
 </head>
