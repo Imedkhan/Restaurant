@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mloukhia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #bdc9cc;
+            color: Black;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .flags img {
+            width: 30px;
+            height: auto;
+            margin-left: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .dish-image {
+            display: block;  /* Ensures the image is treated as a block element */
+            width: 40%;
+            max-width: 700px;
+            margin: 0 auto;  /* This centers the image horizontally */
+            border-radius: 20px;
+        }
+        .overview, .calories, .components, .allergies, .history, .serving {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .overview {
+            background-color: #f8f8f8;
+        }
+        .calories {
+            background-color: #e8f7fa;
+        }
+        .components {
+            background-color: #f1f8e9;
+        }
+        .allergies {
+            background-color: #ffebee;
+        }
+        .history {
+            background-color: #fffae6;
+        }
+        .serving {
+            background-color: #e8f7e8;
+        }
+        .overview h2, .calories h2, .components h2, .allergies h2, .history h2, .serving h2 {
+            margin-top: 0;
+        }
+        .back-to-top {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-to-top a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-to-top a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function switchLanguage(language) {
+            const texts = {
+                'fr': 'Mloukhia',
+                'en': 'Mloukhia',
+                'es': 'Mloukhia',
+                'de': 'Mloukhia',
+                'it': 'Mloukhia',
+                'pl': 'Mloukhia',
+                'ar': 'ملوخية'
+            };
+
+            const overviews = {
+                'fr': 'La Mloukhia est un plat traditionnel tunisien à base de feuilles séchées de corète, cuit lentement avec de la viande et des épices.',
+                'en': 'Mloukhia is a traditional Tunisian dish made from dried jute leaves, slowly cooked with meat and spices.',
+                'es': 'La Mloukhia es un plato tradicional tunecino hecho con hojas secas de corète, cocido lentamente con carne y especias.',
+                'de': 'Mloukhia ist ein traditionelles tunesisches Gericht aus getrockneten Corête-Blättern, das langsam mit Fleisch und Gewürzen gekocht wird.',
+                'it': 'Mloukhia è un piatto tradizionale tunisino a base di foglie secche di corète, cotto lentamente con carne e spezie.',
+                'pl': 'Mloukhia to tradycyjne tunezyjskie danie z suszonych liści korętki, gotowane powoli z mięsem i przyprawami.',
+                'ar': 'الملوخية هي طبق تقليدي تونسي يعتمد على أوراق الكوريت المجففة، ويتم طهيه ببطء مع اللحم والتوابل.'
+            };
+
+            const calories = {
+                'fr': 'Environ 300 calories par portion...',
+                'en': 'About 300 calories per serving...',
+                'es': 'Alrededor de 300 calorías por porción...',
+                'de': 'Etwa 300 Kalorien pro Portion...',
+                'it': 'Circa 300 calorie per porzione...',
+                'pl': 'Około 300 kalorii na porcję...',
+                'ar': 'حوالي 300 سعرة حرارية لكل حصة...'
+            };
+
+            const components = {
+                'fr': 'Composants principaux : Feuilles de corète séchées, viande d\'agneau ou de bœuf, huile d\'olive, épices, ail...',
+                'en': 'Main ingredients: Dried jute leaves, lamb or beef, olive oil, spices, garlic...',
+                'es': 'Ingredientes principales: Hojas secas de corète, carne de cordero o res, aceite de oliva, especias, ajo...',
+                'de': 'Hauptzutaten: Getrocknete Corête-Blätter, Lamm- oder Rindfleisch, Olivenöl, Gewürze, Knoblauch...',
+                'it': 'Ingredienti principali: Foglie secche di corète, carne di agnello o manzo, olio d\'oliva, spezie, aglio...',
+                'pl': 'Główne składniki: Suszone liście korętki, mięso jagnięce lub wołowe, oliwa z oliwek, przyprawy, czosnek...',
+                'ar': 'المكونات الرئيسية: أوراق كوريت المجففة، لحم الضأن أو البقر، زيت الزيتون، التوابل، الثوم...'
+            };
+
+            const allergies = {
+                'fr': 'Allergènes : Contient des traces de gluten, peut contenir des noix.',
+                'en': 'Allergens: Contains traces of gluten, may contain nuts.',
+                'es': 'Alergénicos: Contiene trazas de gluten, puede contener frutos secos.',
+                'de': 'Allergene: Enthält Spuren von Gluten, kann Nüsse enthalten.',
+                'it': 'Allergeni: Contiene tracce di glutine, può contenere frutta secca.',
+                'pl': 'Alergeny: Zawiera śladowe ilości glutenu, może zawierać orzechy.',
+                'ar': 'المواد المثيرة للحساسية: يحتوي على آثار من الغلوتين، قد يحتوي على مكسرات.'
+            };
+
+            const history = {
+                'fr': 'La Mloukhia a été un plat populaire dans le monde arabe et méditerranéen, notamment en Tunisie, où elle est préparée depuis des siècles.',
+                'en': 'Mloukhia has been a popular dish in the Arab and Mediterranean world, particularly in Tunisia, where it has been prepared for centuries.',
+                'es': 'La Mloukhia ha sido un plato popular en el mundo árabe y mediterráneo, especialmente en Túnez, donde se ha preparado durante siglos.',
+                'de': 'Mloukhia ist ein beliebtes Gericht in der arabischen und mediterranen Welt, besonders in Tunesien, wo es seit Jahrhunderten zubereitet wird.',
+                'it': 'Mloukhia è stato un piatto popolare nel mondo arabo e mediterraneo, in particolare in Tunisia, dove viene preparato da secoli.',
+                'pl': 'Mloukhia jest popularnym daniem w świecie arabskim i śródziemnomorskim, szczególnie w Tunezji, gdzie jest przygotowywane od wieków.',
+                'ar': 'الملوخية طبق شائع في العالم العربي والمتوسطي، وخاصة في تونس، حيث يتم تحضيرها منذ قرون.'
+            };
+
+            const serving = {
+                'fr': 'La Mloukhia se sert généralement avec du pain frais et parfois avec des olives ou du riz.',
+                'en': 'Mloukhia is usually served with fresh bread and sometimes with olives or rice.',
+                'es': 'La Mloukhia generalmente se sirve con pan fresco y, a veces, con aceitunas o arroz.',
+                'de': 'Mloukhia wird normalerweise mit frischem Brot und manchmal mit Oliven oder Reis serviert.',
+                'it': 'Mloukhia viene solitamente servita con pane fresco e talvolta con olive o riso.',
+                'pl': 'Mloukhia zazwyczaj podaje się z świeżym chlebem, czasami z oliwkami lub ryżem.',
+                'ar': 'تُقدم الملوخية عادة مع الخبز الطازج وأحيانًا مع الزيتون أو الأرز.'
+            };
+            // Switch content based on the selected language
+            document.querySelector('.container h1').textContent = texts[language];
+            document.querySelector('.overview h2').textContent = language === 'en' ? 'Overview' : (language === 'es' ? 'Visión general' : (language === 'de' ? 'Übersicht' : (language === 'it' ? 'Panoramica' : (language === 'pl' ? 'Przegląd' : (language === 'ar' ? 'نظرة عامة' : 'Présentation')))));
+            document.querySelector('.calories h2').textContent = language === 'en' ? 'Calories' : (language === 'es' ? 'Calorías' : (language === 'de' ? 'Kalorien' : (language === 'it' ? 'Calorie' : (language === 'pl' ? 'Kalorie' : (language === 'ar' ? 'السعرات الحرارية' : 'Calories')))));
+            document.querySelector('.components h2').textContent = language === 'en' ? 'Ingredients' : (language === 'es' ? 'Ingredientes' : (language === 'de' ? 'Zutaten' : (language === 'it' ? 'Ingredienti' : (language === 'pl' ? 'Składniki' : (language === 'ar' ? 'المكونات' : 'Ingrédients')))));
+            document.querySelector('.allergies h2').textContent = language === 'en' ? 'Allergens' : (language === 'es' ? 'Alergénicos' : (language === 'de' ? 'Allergene' : (language === 'it' ? 'Allergeni' : (language === 'pl' ? 'Alergeny' : (language === 'ar' ? 'المواد المثيرة للحساسية' : 'Allergènes')))));
+
+            document.querySelector('.overview p').textContent = overviews[language];
+            document.querySelector('.calories p').textContent = calories[language];
+            document.querySelector('.components p').textContent = components[language];
+            document.querySelector('.allergies p').textContent = allergies[language];
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="dish-name">Mloukhia</h1>
+            <div class="flags">
+                <img src="https://flagcdn.com/fr.svg" alt="French" title="Français" onclick="switchLanguage('fr')">
+                <img src="https://flagcdn.com/gb.svg" alt="English" title="English" onclick="switchLanguage('en')">
+                <img src="https://flagcdn.com/es.svg" alt="Spanish" title="Español" onclick="switchLanguage('es')">
+                <img src="https://flagcdn.com/de.svg" alt="German" title="Deutsch" onclick="switchLanguage('de')">
+                <img src="https://flagcdn.com/it.svg" alt="Italian" title="Italiano" onclick="switchLanguage('it')">
+                <img src="https://flagcdn.com/pl.svg" alt="Polish" title="Polski" onclick="switchLanguage('pl')">
+                <img src="https://flagcdn.com/tn.svg" alt="Arabic" title="العربية" onclick="switchLanguage('ar')">
+            </div>
+        </header>
+
+        <img class="dish-image" src="https://zemny.co/wp-content/uploads/2020/05/mloukhia.jpg" alt="Mloukhia">
+        <div class="overview">
+            <h2>Overview</h2>
+            <p id="overview">La Mloukhia est un plat traditionnel tunisien à base de feuilles séchées de corète, cuit lentement avec de la viande et des épices.</p>
+        </div>
+
+        <div class="calories">
+            <h2>Calories</h2>
+            <p id="calories">Environ 300 calories par portion...</p>
+        </div>
+
+        <div class="components">
+            <h2>Composants principaux</h2>
+            <p id="components">Composants principaux : Feuilles de corète séchées, viande d'agneau ou de bœuf, huile d'olive, épices, ail...</p>
+        </div>
+
+        <div class="allergies">
+            <h2>Allergènes</h2>
+            <p id="allergies">Allergènes : Contient des traces de gluten, peut contenir des noix.</p>
+        </div>
+
+        <div class="history">
+            <h2>Histoire</h2>
+            <p id="history">La Mloukhia a été un plat populaire dans le monde arabe et méditerranéen, notamment en Tunisie, où elle est préparée depuis des siècles.</p>
+        </div>
+
+        <div class="serving">
+            <h2>Présentation</h2>
+            <p id="serving">La Mloukhia se sert généralement avec du pain frais et parfois avec des olives ou du riz.</p>
+        </div>
+
+        <div class="back-to-top">
+            <a href="#">Retour en haut</a>
+        </div>
+    </div>
+</body>
+</html>
